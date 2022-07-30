@@ -3,8 +3,8 @@
     <h2>Clock</h2>
     <fieldset>
       <legend>Current state</legend>
-      <div>State:
-        <input :checked="clock.state" type="checkbox" disabled>
+      <div>
+        State: <Led :state="clock.state" :size="16" />
         {{ this.clock.running ? 'running' : this.clock.state ? 'stepping' : 'stopped' }}
       </div>
       <div>Step: {{ clock.step }}</div>
@@ -27,8 +27,12 @@
 <script>
 import { defineComponent, provide, reactive } from 'vue'
 import { useClock } from '../clock'
+import { Led } from '@padcom/virtualcpu-common-vue-led'
 
 export default defineComponent({
+  components: {
+    Led,
+  },
   setup() {
     const clock = useClock(100, {
       autostart: false,

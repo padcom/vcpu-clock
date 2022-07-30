@@ -3,10 +3,14 @@
   "version": "0.0.3",
   "author": "Matthias Hryniszak <padcom@gmail.com>",
   "license": "Apache-2.0",
-  "keywords": [ "virtualcpu" ],
+  "keywords": [
+    "virtualcpu"
+  ],
   "type": "module",
   "main": "dist/index.js",
-  "files": [ "dist" ],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/padcom/virtualcpu-clock"
@@ -27,6 +31,8 @@
     "prepublishOnly": "npm install && npm run build"
   },
   "peerDependencies": {
+    "@padcom/virtualcpu-common-vue-led": "^0.0.0",
+    "@padcom/virtualcpu-common-vue-timer": "^0.0.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
