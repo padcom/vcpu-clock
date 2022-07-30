@@ -9,9 +9,8 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: path.resolve(__dirname, './src/index.js'),
-      formats: [ 'es' ],
-      name: 'library1',
       fileName: format => `index.js`,
+      formats: [ 'es' ],
     },
     rollupOptions: {
       input: [
