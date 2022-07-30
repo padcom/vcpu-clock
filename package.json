@@ -1,15 +1,30 @@
 {
   "name": "@padcom/virtualcpu-clock",
-  "private": true,
   "version": "0.0.0",
+  "author": "Matthias Hryniszak <padcom@gmail.com>",
+  "license": "Apache-2.0",
+  "keywords": [ "virtualcpu" ],
   "type": "module",
-  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [ "dist" ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/padcom/virtualcpu-clock"
+  },
+  "bugs": {
+    "url": "https://github.com/padcom/virtualcpu-clock/issues"
+  },
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/padcom"
+  },
   "scripts": {
     "start": "concurrently 'npm run build:watch' 'npm run serve' 'npm run dev'",
     "dev": "vite .",
     "build": "vite build --config vite-lib.config.js",
     "build:watch": "npm run build -- -w",
-    "serve": "serve -p 3001 ."
+    "serve": "serve -p 3001 .",
+    "prepublishOnly": "npm install && npm run build"
   },
   "peerDependencies": {
     "vue": "^3.2.37"
