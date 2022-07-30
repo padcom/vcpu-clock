@@ -1,18 +1,24 @@
 {
-  "name": "clock",
+  "name": "@padcom/virtualcpu-clock",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "src/index.js",
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "concurrently 'npm run build:watch' 'npm run serve' 'npm run dev'",
+    "dev": "vite .",
+    "build": "vite build --config vite-lib.config.js",
+    "build:watch": "npm run build -- -w",
+    "serve": "serve -p 3001 ."
   },
-  "dependencies": {
+  "peerDependencies": {
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",
+    "concurrently": "^7.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "serve": "^14.0.1",
     "vite": "^3.0.0"
   }
 }
