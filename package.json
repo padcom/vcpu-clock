@@ -38,6 +38,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",
     "concurrently": "^7.3.0",
+    "eventemitter3": "^4.0.7",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "serve": "^14.0.1",
     "vite": "^3.0.0"

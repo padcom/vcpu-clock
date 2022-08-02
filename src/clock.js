@@ -1,15 +1,17 @@
 import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue'
+import EventEmitter from 'eventemitter3'
 
-export function useClock(maxFrequency, { callback = () => {}, autostart = true } = {}) {
+export function useClock(maxFrequency, { autostart = true } = {}) {
   const frequency = ref(1)
   const state = ref(false)
   const counter = ref(0)
   const timer = ref(null)
   const running = computed(() => Boolean(timer.value))
+  const events = new EventEmitter()
 
   const simulate = () => {
     state.value = true
-    callback(counter.value)
+    events.emit('tick', counter.value)
     if (frequency.value) {
       setTimeout(() => state.value = false, (10 * maxFrequency) / (frequency.value * 2))
     } else {
@@ -47,5 +49,8 @@ export function useClock(maxFrequency, { callback = () => {}, autostart = true }
   onBeforeUnmount(stop)
   watch(frequency, update)
 
-  return { frequency, start, stop, state: computed(() => state.value), step: counter, tick, running }
+  const on = (event, handler) => events.on(event, handler)
+  const off = (event, handler) => events.off(event, handler)
+
+  return { frequency, start, stop, state: computed(() => state.value), step: counter, tick, running, on, off }
 }

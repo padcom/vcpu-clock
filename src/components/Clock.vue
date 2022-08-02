@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { defineComponent, provide, reactive } from 'vue'
+import { defineComponent, onBeforeUnmount, onMounted, provide, reactive } from 'vue'
 import { useClock } from '../clock'
 import { Led } from '@padcom/virtualcpu-common-vue-led'
 
@@ -34,13 +34,12 @@ export default defineComponent({
     Led,
   },
   setup() {
-    const clock = useClock(100, {
-      autostart: false,
-      callback(counter) {
-        console.log('counter', counter)
-      }
-    })
+    const clock = useClock(100, { autostart: false })
     provide('clock', reactive(clock))
+
+    const tick = counter => console.log('counter', counter)
+    onMounted(() => clock.on('tick', tick))
+    onBeforeUnmount(() => clock.on('tick', tick))
 
     return { clock: reactive(clock) }
   },
